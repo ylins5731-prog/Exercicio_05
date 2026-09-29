@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Aula 8 — Potenciômetro virtual</title>
+  <style>
+    :root{font-family:Inter,Arial,sans-serif;color:#edf7ff;background:#07131d}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}#renderCanvas{width:100%;height:100%;display:block;touch-action:none}.painel{position:absolute;top:18px;left:18px;width:min(405px,calc(100% - 36px));padding:21px;border:1px solid #365970;border-radius:14px;background:rgba(7,19,29,.95);box-shadow:0 16px 45px #0009}h1{margin:0 0 4px;font-size:22px}.sub{margin:0 0 16px;color:#94abba;font-size:13px}.linha{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid #284253}.valor{font-weight:800;text-align:right;font-variant-numeric:tabular-nums}.barra{height:16px;margin:16px 0 4px;border-radius:8px;background:#1a3445;overflow:hidden}.nivel{width:0;height:100%;background:linear-gradient(90deg,#3bd17f,#ffcc54,#ff655e);transition:width .08s linear}.escala{display:flex;justify-content:space-between;color:#8da7b7;font-size:11px}button{width:100%;margin-top:16px;padding:12px;border:0;border-radius:7px;background:#398cff;color:#fff;font-weight:800;cursor:pointer}button.secundario{background:#263e50}#log{min-height:35px;margin:13px 0 0;color:#94abba;font-size:12px;line-height:1.4}.ok{color:#5ddd9b}.erro{color:#ff7d75}.alerta{color:#ffcb65}.acoes{display:grid;grid-template-columns:2fr 1fr;gap:8px}.limiar{margin-top:14px}.limiar label{display:flex;justify-content:space-between;font-size:12px;font-weight:700}input[type=range]{width:100%;accent-color:#ffcc54}
+  </style>
+</head>
+<body>
+  <canvas id="renderCanvas"></canvas>
+  <section class="painel">
+    <h1>Comissionamento do potenciômetro</h1><p class="sub">Entrada física • Web Serial • gêmeo virtual</p>
+    <div class="linha"><span>Fonte</span><span id="fonte" class="valor alerta">DESCONECTADA</span></div>
+    <div class="linha"><span>Leitura A/D</span><span id="raw" class="valor">0 / 1023</span></div>
+    <div class="linha"><span>Posição</span><span id="percentual" class="valor">0,0 %</span></div>
+    <div class="linha"><span>Tensão estimada</span><span id="tensao" class="valor">0,00 V</span></div>
+    <div class="linha"><span>Faixa de operação</span><span id="faixa" class="valor">BAIXA</span></div>
+    <div class="barra"><div id="nivel" class="nivel"></div></div><div class="escala"><span>0</span><span>512</span><span>1023</span></div>
+    <div class="limiar"><label for="limiar"><span>Limiar de alarme virtual</span><span id="limiarValor">80 %</span></label><input id="limiar" type="range" min="10" max="100" step="5" value="80"></div>
+    <div class="acoes"><button id="conectar">CONECTAR ARDUINO</button><button id="demo" class="secundario">DEMO</button></div>
+    <p id="log">Use Chrome ou Edge. O modo DEMO permite testar sem hardware.</p>
+  </section>
+  <script type="module" src="/src/main.js"></script>
+</body></html>
